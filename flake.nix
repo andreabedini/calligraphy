@@ -39,17 +39,16 @@
             };
         in
         rec {
-          devShells = {
+          devShells = rec {
+            default = ghc922-shell;
             ghc922-shell = mkShell "ghc922";
             ghc902-shell = mkShell "ghc902";
             ghc8107-shell = mkShell "ghc8107";
             ghc884-shell = mkShell "ghc884";
           };
-          devShell = devShells.ghc922-shell;
-          packages.calligraphy = pkgs.calligraphy;
-          defaultPackage = pkgs.calligraphy;
 
-          apps = {
+          packages = rec {
+            default = pkgs.calligraphy;
             calligraphy-ghc922 = mkApp "ghc922";
             calligraphy-ghc902 = mkApp "ghc902";
             calligraphy-ghc8107 = mkApp "ghc8107";
